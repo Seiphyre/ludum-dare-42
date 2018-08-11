@@ -31,6 +31,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public int GetItemLeftCount()
+    {
+        return m_currentLevel.ItemLeftCount();
+    }
+
     void Awake()
     {
         if (Instance == null)
@@ -41,6 +46,8 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+        StartCoroutine(SpawnNextLevel());
     }
 
     [ContextMenu("SpawnNextLevel")]
@@ -48,6 +55,7 @@ public class LevelManager : MonoBehaviour
     {
         StartCoroutine(SpawnNextLevel());
     }
+
     IEnumerator SpawnNextLevel()
     {
         m_currentLevel = Instantiate(Levels[m_currentLevelIndex]).GetComponent<LevelInstance>();

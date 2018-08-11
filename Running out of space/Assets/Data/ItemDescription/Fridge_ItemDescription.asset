@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ecac2108e236364b9bf5bba47f9c218, type: 3}
-  m_Name: Table_ItemDescription
+  m_Name: Fridge_ItemDescription
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1464304028652806, guid: c963b75078f38ea4aab96d07ccf3107f, type: 2}
-  ItemType: 5
+  Prefab: {fileID: 1251547576923808, guid: d67ad849ec6b2e14c96edeac7dc90597, type: 2}
+  ItemType: 3
   Sprite: {fileID: 0}
   ContainerType: 1
-  HideContent: 0
-  ContainSize: 0
+  HideContent: 1
+  ContainSize: 2
   ContentSize: 0
   Size: {x: 1, y: 1, z: 1}
