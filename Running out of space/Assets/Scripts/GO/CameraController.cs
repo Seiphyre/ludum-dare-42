@@ -53,6 +53,16 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    public void SetWallMeshs(List<MeshRenderer> north, List<MeshRenderer> east, List<MeshRenderer> south, List<MeshRenderer> west)
+    {
+        wall_N.SetMeshList(north);
+        wall_E.SetMeshList(east);
+        wall_S.SetMeshList(south);
+        wall_W.SetMeshList(west);
+
+        chdWall(CurrentCameraDirection);
+    }
+
     #region Unity Functions
     // Use this for initialization
     void Start()
@@ -79,7 +89,7 @@ public class CameraController : MonoBehaviour
     {
         if (corout != null)
             StopCoroutine(corout);
-			
+
         Direction toDir = CurrentCameraDirection;
         toDir += positiveRotation ? 1 : -1;
         if (toDir < 0)
@@ -92,7 +102,7 @@ public class CameraController : MonoBehaviour
         else
             rot = GetCamRot(toDir, CurrentCameraDirection);
 
-		CurrentCameraDirection = toDir;
+        CurrentCameraDirection = toDir;
 
 
         corout = StartCoroutine(CamRotate(
@@ -169,9 +179,6 @@ public class CameraController : MonoBehaviour
                 return new Vector3(0, 270, 0);
         }
     }
-
-
-
 }
 
 [System.Serializable]
@@ -192,5 +199,12 @@ class Wall
     {
         for (int i = 0; i < wallsGameObjects.Count; i++)
             wallsGameObjects[i].shadowCastingMode = visible ? ShadowCastingMode.On : ShadowCastingMode.ShadowsOnly;
+    }
+
+    public void SetMeshList(List<MeshRenderer> meshList)
+    {
+        wallsGameObjects.Clear();
+
+        wallsGameObjects = meshList;
     }
 }
