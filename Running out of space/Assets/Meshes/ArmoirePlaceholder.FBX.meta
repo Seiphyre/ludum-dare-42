@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d70801c283695dd4c8c9cb6ce3803168
+guid: 52116a808d8edaa4f8f226e6dd20f527
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -8,11 +8,11 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Mesure01
+    4300000: ArmoirePlaceholder
     9500000: //RootNode
   externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
