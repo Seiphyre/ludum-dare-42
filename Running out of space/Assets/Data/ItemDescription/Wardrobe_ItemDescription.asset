@@ -16,6 +16,6 @@ MonoBehaviour:
   Sprite: {fileID: 0}
   ContainerType: 1
   HideContent: 1
-  ContainSize: 2
+  ContainSize: 4
   ContentSize: 0
   Size: {x: 1, y: 1, z: 1}

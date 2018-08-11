@@ -143,7 +143,7 @@ MonoBehaviour:
   Factory: {fileID: 11400000, guid: aed36f3308abf86459f18dd7fcec8df0, type: 2}
   ItemEntityPrefab: {fileID: 1477688258281024, guid: 2e0c6a9a19e327a449973591514fab04,
     type: 2}
-  CameraPrefab: {fileID: 1339492009832134, guid: fa005876328a42a44bb2f0543a5bb5b1,
+  CameraPrefab: {fileID: 1509654117358736, guid: fa005876328a42a44bb2f0543a5bb5b1,
     type: 2}
   Levels:
   - {fileID: 1799447400405066, guid: 443c46cf8e089e94c937d997706221cd, type: 2}
