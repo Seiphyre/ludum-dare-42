@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: Wardrobe_ItemDescription
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1083434809794870, guid: 04a11926ceae23a4690cd5fcfda50a86, type: 2}
-  ItemType: 5
+  ItemType: 6
+  Sprite: {fileID: 0}
   ContainerType: 1
   HideContent: 1
   ContainSize: 2

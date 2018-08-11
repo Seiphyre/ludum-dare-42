@@ -7,6 +7,7 @@ public enum ItemType
     Chair,
     Bed,
     FlowerPot,
+    Fridge,
     Sofa,
     Table,
     Wardrobe,
