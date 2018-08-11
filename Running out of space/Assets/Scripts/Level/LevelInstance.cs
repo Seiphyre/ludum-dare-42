@@ -20,6 +20,7 @@ public class LevelInstance : MonoBehaviour
         LevelManager.Instance.Camera.SetWallMeshs(WallNorth, WallEast, WallSouth, WallWest);
     }
 
+    #region GameLoop
     public IEnumerator SpawnLevel()
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -57,6 +58,14 @@ public class LevelInstance : MonoBehaviour
         yield break;
     }
 
+    #endregion GameLoop
+
+    #region Items
+
+    public int ItemLeftCount()
+    {
+        return m_itemLeft.Count;
+    }
     internal void SpawnItem()
     {
         ItemEntity item = Instantiate(LevelManager.Instance.ItemEntityPrefab).GetComponent<ItemEntity>();
@@ -89,6 +98,8 @@ public class LevelInstance : MonoBehaviour
     {
         return SpawnPoints[Random.Range(0, SpawnPoints.Count)].position;
     }
+
+    #endregion Items
 
     private List<ItemType> m_itemLeft;
 }

@@ -20,4 +20,9 @@ public class ItemFactory : ScriptableObject
         Debug.LogError("No item corresponding to type in ItemFactory");
         return null;
     }
+
+    public Sprite GetItemSprite(ItemType type)
+    {
+        return GetDescription(type).Sprite;
+    }
 }

@@ -8,6 +8,7 @@ public class ItemDescription : ScriptableObject
     public GameObject Prefab;
 
     public ItemType ItemType;
+    public Sprite Sprite;
     public ItemContainerType ContainerType;
     public bool HideContent;
     public int ContainSize;
