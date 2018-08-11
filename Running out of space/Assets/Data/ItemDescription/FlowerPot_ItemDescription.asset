@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ecac2108e236364b9bf5bba47f9c218, type: 3}
-  m_Name: Wardrobe_ItemDescription
+  m_Name: FlowerPot_ItemDescription
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1083434809794870, guid: 04a11926ceae23a4690cd5fcfda50a86, type: 2}
-  ItemType: 4
-  ContainerType: 1
-  HideContent: 1
-  ContainSize: 2
-  ContentSize: 0
+  Prefab: {fileID: 1785007918837760, guid: 56706a854edf6c841a31bc1c2b91e595, type: 2}
+  ItemType: 2
+  ContainerType: 2
+  HideContent: 0
+  ContainSize: 0
+  ContentSize: 1
   Size: {x: 1, y: 1, z: 1}

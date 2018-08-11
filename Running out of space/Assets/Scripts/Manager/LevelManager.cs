@@ -28,7 +28,6 @@ public class LevelManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("hi");
             Levels[m_currentLevel].SpawnItem();
         }
     }

@@ -6,6 +6,7 @@ public enum ItemType
 {
     Chair,
     Bed,
+    FlowerPot,
     Sofa,
     Table,
     Wardrobe,
