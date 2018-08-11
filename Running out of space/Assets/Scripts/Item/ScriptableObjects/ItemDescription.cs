@@ -9,7 +9,8 @@ public class ItemDescription : ScriptableObject
 
     public ItemType ItemType;
     public ItemContainerType ContainerType;
-    public int ContainSlot;
+    public bool HideContent;
+    public int ContainSize;
     public int ContentSize;
     public Vector3 Size;
 }

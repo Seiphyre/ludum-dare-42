@@ -13,6 +13,7 @@ public class LevelInstance : MonoBehaviour
         ItemEntity item = Instantiate(LevelManager.Instance.ItemEntityPrefab).GetComponent<ItemEntity>();
         item.Initialize(LevelManager.Instance.Factory.GetDescription(Items[0]));
         item.transform.position = SpawnPoints[0].position;
+        StartCoroutine(FallObject(item.Visual.GetObject().transform));
     }
 
     void Start()
@@ -23,5 +24,22 @@ public class LevelInstance : MonoBehaviour
     void Update()
     {
 
+    }
+
+    IEnumerator FallObject(Transform item)
+    {
+        Vector3 newPosition = new Vector3(0, 10f, 0);
+        item.localPosition = newPosition;
+        float step = 50f;
+        for (int i = 0; i < step; i++)
+        {
+            newPosition = new Vector3(0, 10f - (float)i / (step / 10f), 0);
+            item.localPosition = newPosition;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        item.localPosition = Vector3.zero;
+
+        yield break;
     }
 }
