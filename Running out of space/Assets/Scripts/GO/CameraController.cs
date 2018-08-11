@@ -25,11 +25,11 @@ public class CameraController : MonoBehaviour
 
         set
         {
-            if (value < 0)
-                value = Direction.LENGTH - 1;
-            else if (value >= Direction.LENGTH)
-                value = 0;
             currentCameraDirection = value;
+            if (currentCameraDirection < 0)
+                currentCameraDirection = Direction.LENGTH - 1;
+            else if (currentCameraDirection >= Direction.LENGTH)
+                currentCameraDirection = 0;
         }
     }
 
@@ -64,13 +64,11 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetButtonDown("RotateCameraRight"))
         {
-            CurrentCameraDirection--;
             positiveRotation = false;
             TriggerInput();
         }
         else if (Input.GetButtonDown("RotateCameraLeft"))
         {
-            CurrentCameraDirection++;
             positiveRotation = true;
             TriggerInput();
         }
@@ -81,75 +79,97 @@ public class CameraController : MonoBehaviour
     {
         if (corout != null)
             StopCoroutine(corout);
-        rot = GetCamRot(CurrentCameraDirection);
+			
+        Direction toDir = CurrentCameraDirection;
+        toDir += positiveRotation ? 1 : -1;
+        if (toDir < 0)
+            toDir = Direction.LENGTH - 1;
+        else if (toDir >= Direction.LENGTH)
+            toDir = 0;
+
+        if (positiveRotation)
+            rot = GetCamRot(toDir, CurrentCameraDirection);
+        else
+            rot = GetCamRot(toDir, CurrentCameraDirection);
+
+		CurrentCameraDirection = toDir;
+
+
         corout = StartCoroutine(CamRotate(
-			()=>{
-			chdWall(CurrentCameraDirection);
-			return null;
-		}));
+            () =>
+            {
+                chdWall(CurrentCameraDirection);
+                return null;
+            }));
     }
 
     private IEnumerator CamRotate(Func<object> p)
     {
 
         Vector3 _currentRot = transform.rotation.eulerAngles;
-		bool _hasShowedWalls = false;
+        bool _hasShowedWalls = false;
+        float angle = Mathf.Abs(rot.y - (transform.rotation.eulerAngles.y)) % 360;
         //rot = transform.rotation.eulerAngles;
-        while (Mathf.Abs(transform.rotation.eulerAngles.y - rot.y) % 360 > rotationStep)
+        while (angle > rotationStep)
         {
-			if (Mathf.Abs(transform.rotation.eulerAngles.y - rot.y) % 360 < 45 && !_hasShowedWalls)
-			{
-				p.Invoke();
-				_hasShowedWalls = true;
-			}
+            print(transform.rotation.eulerAngles.y + " || " + rot.y);
+            if (angle < 45 && !_hasShowedWalls)
+            {
+                p.Invoke();
+                _hasShowedWalls = true;
+            }
             //rot = new Vector3(rot.x, rot.y + rotationStep, rot.z);
             transform.Rotate(0, (positiveRotation ? 1 : -1) * rotationStep, 0);
             yield return new WaitForFixedUpdate();
+            angle = Mathf.Abs(transform.rotation.eulerAngles.y - rot.y) % 360;
         }
         transform.rotation = Quaternion.Euler(rot);
     }
 
     private void chdWall(Direction dir)
     {
-		wall_N.SetVisualShadow(true);
-		wall_E.SetVisualShadow(true);
-		wall_S.SetVisualShadow(true);
-		wall_W.SetVisualShadow(true);
-		 switch (dir)
+        wall_N.SetVisualShadow(true);
+        wall_E.SetVisualShadow(true);
+        wall_S.SetVisualShadow(true);
+        wall_W.SetVisualShadow(true);
+        switch (dir)
         {
             default:
             case Direction.North:
                 wall_S.SetVisualShadow(false);
-				break;
+                break;
             case Direction.East:
                 wall_W.SetVisualShadow(false);
-				break;
+                break;
             case Direction.South:
                 wall_N.SetVisualShadow(false);
-				break;
+                break;
             case Direction.West:
                 wall_E.SetVisualShadow(false);
-				break;
+                break;
         }
-				print("AAAAAAA");
     }
 
-    private Vector3 GetCamRot(Direction _camDir)
+    private Vector3 GetCamRot(Direction _camDir, Direction fromRot)
     {
         switch (_camDir)
         {
             default:
             case Direction.North:
-                return new Vector3(0, 0, 0);
+                if (fromRot == Direction.West)
+                    return new Vector3(0, 360, 0);
+                else
+                    return new Vector3(0, 0, 0);
+
             case Direction.East:
                 return new Vector3(0, 90, 0);
             case Direction.South:
                 return new Vector3(0, 180, 0);
             case Direction.West:
-                return new Vector3(0, -90, 0);
+                return new Vector3(0, 270, 0);
         }
     }
-    
+
 
 
 }
