@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Name: Table_ItemDescription
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1464304028652806, guid: c963b75078f38ea4aab96d07ccf3107f, type: 2}
-  ItemType: 3
+  ItemType: 4
   ContainerType: 1
-  ContainSlot: 0
+  HideContent: 0
+  ContainSize: 0
   ContentSize: 0
   Size: {x: 1, y: 1, z: 1}

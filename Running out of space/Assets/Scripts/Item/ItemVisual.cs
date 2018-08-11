@@ -125,7 +125,6 @@ public class ItemVisual
         {
             Slots.Add(slot);
             EmptySlots++;
-            Debug.Log("hi Slots");
         }
 
         internal void AddItem(ItemEntity item, ItemDescription container)
@@ -134,8 +133,6 @@ public class ItemVisual
 
             if (container.HideContent)
             {
-                Debug.Log("hi Item");
-
                 item.gameObject.SetActive(false);
             }
             else
