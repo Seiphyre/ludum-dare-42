@@ -163,6 +163,12 @@ Prefab:
       value: 
       objectReference: {fileID: 1356955892787964, guid: fc783fe773788614eb5be49a2db06a1c,
         type: 2}
+    - target: {fileID: 114242864006042348, guid: cc94f56011cd38f4085a0f12bdca5bd4,
+        type: 2}
+      propertyPath: Levels.Array.data[0]
+      value: 
+      objectReference: {fileID: 1068644885896460, guid: 52892e52f6cd6224bb9197bba2b90f52,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc94f56011cd38f4085a0f12bdca5bd4, type: 2}
   m_IsPrefabParent: 0

@@ -2893,7 +2893,7 @@ MonoBehaviour:
   - {fileID: 4041241127984892}
   Items: 000000000a0000000b000000140000001e000000330000006e0000008c000000b4000000b5000000be000000bf000000dc000000
   LevelArmatureSpawnDelay: 0.5
-  ItemSpawnDelay: 10
+  ItemSpawnDelay: 5
   SpawnHeight: 5
   MapDimension: {x: 5, y: 3, z: 5}
   WallNorth:
