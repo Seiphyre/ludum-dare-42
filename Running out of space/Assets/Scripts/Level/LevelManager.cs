@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     [Space(5f)]
     public GameObject ItemEntityPrefab;
     [SerializeField] GameObject CameraPrefab;
+	public GameObject PlayerPrefab;
 
     public GameObject ContainerCanvas;
 
@@ -60,11 +61,22 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator SpawnNextLevel()
     {
-        m_currentLevel = Instantiate(Levels[m_currentLevelIndex]).GetComponent<LevelInstance>();
+		m_currentLevel = Instantiate(Levels[m_currentLevelIndex]).GetComponent<LevelInstance>();
 
-        yield return m_currentLevel.SpawnLevel();
+		// Replace the camera
+		m_camera.transform.position = new Vector3(m_currentLevel.MapDimension.x / 2f, 0, m_currentLevel.MapDimension.x / 2f);
+		// Reset grid with the good dimensions
+		GridManager.GetInstance().InitGrid(m_currentLevel.MapDimension);
 
-        StartCurrentLevel();
+		yield return m_currentLevel.SpawnLevel();
+
+		// Instantiate player
+		GameObject player = Instantiate(PlayerPrefab, m_currentLevel.transform);
+		player.transform.position = new Vector3(m_currentLevel.SpawnPlayer.position.x, m_currentLevel.SpawnHeight, m_currentLevel.SpawnPlayer.position.z);
+
+		yield return new WaitForSeconds(1);
+
+		StartCurrentLevel();
 
         m_currentLevelIndex++;
     }
