@@ -263,85 +263,85 @@ public class Hand : MonoBehaviour
                 objectRotY = 0;
         }
 
-        ItemEntity obj;
-        // Found a selected object
-        if (CurrentObject != null && SelectedObject != null)
-        {
-            if (SelectedObject.Description.ContainerType != ItemContainerType.Containing)
-            {
-                LevelManager.Instance.GetContainerCanvas().Hide();
-            }
-            else if (CurrentObject.Description.ContainerType == ItemContainerType.Content)
-            {
-                if (LevelManager.Instance.ContainerCanvas.activeSelf == false)
-                {
-                    SelectedObject.ShowContentCanvas();
-                }
-            }
-        }
+		ItemEntity obj;
+		// Found a selected object
+		if (CurrentObject != null && SelectedObject != null)
+		{
+			if (SelectedObject.Description.ContainerType != ItemContainerType.Containing)
+			{
+				LevelManager.Instance.GetContainerCanvas().Hide();
+			}
+			else if (CurrentObject.Description.ContainerType == ItemContainerType.Content)
+			{
+				if (LevelManager.Instance.ContainerCanvas.activeSelf == false)
+				{
+					SelectedObject.ShowContentCanvas();
+				}
+			}
+		}
 
-        if (GridManager.GetInstance().IsCollideWithAnOtherObject(transform.position, out obj) == true)
-        {
-            if (SelectedObject == null)
-            {
-                selectedObjRenderer = obj.GetComponentInChildren<Renderer>();
-                selectedObjRenderer.material.color = Color.blue;
+		if (GridManager.GetInstance().IsCollideWithAnOtherObject(transform.position, out obj) == true)
+		{
+			if (SelectedObject == null)
+			{
+				selectedObjRenderer = obj.GetComponentInChildren<Renderer>();
+				selectedObjRenderer.material.color = Color.blue;
 
-                SelectedObject = obj;
-            }
-            else if ((SelectedObject != null && obj != SelectedObject))
-            {
-                // Reset previous selected obj
-                selectedObjRenderer.material.color = Color.white;
+				SelectedObject = obj;
+			}
+			else if ((SelectedObject != null && obj != SelectedObject))
+			{
+				// Reset previous selected obj
+				selectedObjRenderer.material.color = Color.white;
 
-                // Select new obj
-                selectedObjRenderer = obj.GetComponentInChildren<Renderer>();
-                selectedObjRenderer.material.color = Color.blue;
+				// Select new obj
+				selectedObjRenderer = obj.GetComponentInChildren<Renderer>();
+				selectedObjRenderer.material.color = Color.blue;
 
-                SelectedObject = obj;
-            }
+				SelectedObject = obj;
+			}
 
-            if (CurrentObject != null)
-            {
-                if (SelectedObject.Description.ContainerType == ItemContainerType.Containing
-                && CurrentObject.Description.ContainerType == ItemContainerType.Content)
-                {
-                    selectedObjRenderer.material.color = Color.green;
-                }
-                else
-                {
-                    selectedObjRenderer.material.color = Color.white;
-                }
-            }
+			if (CurrentObject != null)
+			{
+				if (SelectedObject.Description.ContainerType == ItemContainerType.Containing
+				&& CurrentObject.Description.ContainerType == ItemContainerType.Content)
+				{
+					selectedObjRenderer.material.color = Color.green;
+				}
+				else
+				{
+					selectedObjRenderer.material.color = Color.white;
+				}
+			}
 
-            if ((SelectedObject != null && SelectedObject.Description.ContainerType == ItemContainerType.Containing))
-            {
-                if (SelectedObject.Visual.HasItemInContent())
-                {
-                    if (CurrentObject == null)
-                    {
-                        if (LevelManager.Instance.ContainerCanvas.activeSelf == false)
-                        {
-                            SelectedObject.ShowContentCanvas();
-                        }
-                    }
-                }
-            }
-            else
-            {
-                LevelManager.Instance.GetContainerCanvas().Hide();
-            }
-        }
-        else if (SelectedObject != null)
-        {
-            // Reset previous selected obj
-            selectedObjRenderer.material.color = Color.white;
-            SelectedObject = null;
-            LevelManager.Instance.GetContainerCanvas().Hide();
-        }
+			if ((SelectedObject != null && SelectedObject.Description.ContainerType == ItemContainerType.Containing))
+			{
+				if (SelectedObject.Visual.HasItemInContent())
+				{
+					if (CurrentObject == null)
+					{
+						if (LevelManager.Instance.ContainerCanvas.activeSelf == false)
+						{
+							SelectedObject.ShowContentCanvas();
+						}
+					}
+				}
+			}
+			else
+			{
+				LevelManager.Instance.GetContainerCanvas().Hide();
+			}
+		}
+		else if (SelectedObject != null)
+		{
+			// Reset previous selected obj
+			selectedObjRenderer.material.color = Color.white;
+			SelectedObject = null;
+			LevelManager.Instance.GetContainerCanvas().Hide();
+		}
 
-        // Update current position
-        MoveCurrentObjectOnGrid(transform.position);
+		// Update current position
+		MoveCurrentObjectOnGrid(transform.position);
 
         // Place an object (Controler:A Keyboard:V)
         if (Input.GetButtonDown("Action"))

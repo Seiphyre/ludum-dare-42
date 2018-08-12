@@ -203,13 +203,13 @@ public class GridManager : MonoBehaviour
 		entity = null;
 		pos = new Vector3(Mathf.Floor(pos.x), Mathf.Round(pos.y), Mathf.Floor(pos.z));
 
-		if ( !(pos.x >= 0 && pos.x < MapSizeX) )
+		if (!(pos.x >= 0 && pos.x < MapSizeX))
 			return false;
 
 		if (!(pos.y >= 0 && pos.y < MapSizeY))
 			return false;
 
-		if ( !(pos.z >= 0 && pos.z < MapSizeZ) )
+		if (!(pos.z >= 0 && pos.z < MapSizeZ))
 			return false;
 
 		if (gridInfo[(int)pos.x][(int)pos.y][(int)pos.z] != null)
