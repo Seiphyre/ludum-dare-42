@@ -127,6 +127,25 @@ public class GridManager : MonoBehaviour
 		}
 	}
 
+	public void RemoveObject(ItemEntity entity)
+	{
+		Vector3 pos;
+		Vector3 dimension;
+
+		FromWorldPosAndDimToGridPos(entity, out pos, out dimension);
+
+		for (int x = 0; x < dimension.x; x++)
+		{
+			for (int y = 0; y < dimension.y; y++)
+			{
+				for (int z = 0; z < dimension.z; z++)
+				{
+					gridInfo[(int)pos.x + x][(int)pos.y + y][(int)pos.z + z] = null;
+				}
+			}
+		}
+	}
+
 	public bool IsCollideWithAnOtherObject(ItemEntity entity)
 	{
 		Vector3 pos;
@@ -146,6 +165,25 @@ public class GridManager : MonoBehaviour
 			}
 		}
 
+		return false;
+	}
+
+	public bool IsCollideWithAnOtherObject(Vector3 pos, out ItemEntity entity)
+	{
+		Vector3 dimension = Vector3.one;
+
+		entity = null;
+		pos = new Vector3(Mathf.Floor(pos.x), pos.y, Mathf.Floor(pos.z));
+
+		Debug.Log("Pos : " + pos);
+		if ( (pos.x < 0 || pos.x >= MapSizeX) ||( pos.y < 0 || pos.y >= MapSizeY) || (pos.z < 0 || pos.z >= MapSizeZ) )
+			return false;
+
+		if (gridInfo[(int)pos.x][(int)pos.y][(int)pos.z] != null)
+		{
+			entity = gridInfo[(int)pos.x][(int)pos.y][(int)pos.z];
+			return true;
+		}
 		return false;
 	}
 
