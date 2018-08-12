@@ -580,6 +580,7 @@ GameObject:
   - component: {fileID: 23493342335720648}
   - component: {fileID: 95984002634449174}
   - component: {fileID: 114887295569613566}
+  - component: {fileID: 65452964487903278}
   m_Layer: 0
   m_Name: Porte
   m_TagString: Untagged
@@ -3194,6 +3195,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2.0000005, z: 0.10000002}
   m_Center: {x: 0, y: 0, z: 0.05000001}
+--- !u!65 &65452964487903278
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1817351500120128}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 1, z: 2}
+  m_Center: {x: 1.1368684e-13, y: 1.1368684e-13, z: 1}
 --- !u!65 &65480187832714910
 BoxCollider:
   m_ObjectHideFlags: 1
