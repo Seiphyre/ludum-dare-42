@@ -47,7 +47,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // read inputs
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
-            bool crouch = Input.GetKey(KeyCode.C);
+            //bool crouch = Input.GetKey(KeyCode.C);
 
 
 

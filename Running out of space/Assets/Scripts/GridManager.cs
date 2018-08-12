@@ -5,97 +5,46 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+	public int MapSizeX = 20;
+	public int MapSizeY = 20;
+	public int MapSizeZ = 20;
 
-	public static GridManager Instance;
+	[Header("Debug")]
+	public bool DisplayGridInfosWithGizmos = false;
 
-	public int MapSizeX;
-	public int MapSizeY;
-	public int MapSizeZ;
+	private ItemEntity[][][] gridInfo;
 
-	[SerializeField]
-	ItemEntity[][][] gridInfo;
 
-	private void Awake()
+
+	#region -- Singleton ----------------------------
+
+	private static GridManager Instance;
+
+	public static GridManager GetInstance()
 	{
 		if (Instance == null)
 		{
-			Instance = this;
+			Instance = FindObjectOfType<GridManager>();
+
+			if (Instance == null)
+			{
+				GameObject GridManager = new GameObject();
+				Instance = GridManager.AddComponent<GridManager>();
+			}
 		}
-		else if (Instance != this)
-		{
-			Destroy(this);
-		}
+
+		return Instance;
 	}
 
+	#endregion
 
 
-	public void AddObject(Vector3 pos, Vector3 dimension, ItemEntity entity)
+
+	// -- Awake && Start --------------------------------
+
+	private void Awake()
 	{
-		gridInfo[(int)pos.x][(int)pos.y][(int)pos.z] = entity;
-
-		if (dimension.x > 1)
-		{
-			for (int x = 1; x < dimension.x; x++)
-			{
-				gridInfo[(int)pos.x + x][(int)pos.y][(int)pos.z] = entity;
-			}
-		}
-
-		if (dimension.y > 1)
-		{
-			for (int y = 1; y < dimension.y; y++)
-			{
-				gridInfo[(int)pos.x][(int)pos.y + y][(int)pos.z] = entity;
-			}
-		}
-
-		if (dimension.z > 1)
-		{
-			for (int z = 1; z < dimension.z; z++)
-			{
-				gridInfo[(int)pos.x][(int)pos.y][(int)pos.z + z] = entity;
-			}
-		}
-	}
-
-	public bool IsCollideWithAnOtherObject(Vector3 pos, Vector3 dimension)
-	{
-		if (gridInfo[(int)pos.x][(int)pos.y][(int)pos.z] != null)
-			return true;
-
-		if (dimension.x > 1)
-		{
-			for (int x = 1; x < dimension.x; x++)
-			{
-				if (gridInfo[(int)pos.x + x][(int)pos.y][(int)pos.z] != null)
-					return true;
-			}
-		}
-
-		if (dimension.y > 1)
-		{
-			for (int y = 1; y < dimension.y; y++)
-			{
-				if (gridInfo[(int)pos.x][(int)pos.y + y][(int)pos.z] != null)
-					return true;
-			}
-		}
-
-		if (dimension.z > 1)
-		{
-			for (int z = 1; z < dimension.z; z++)
-			{
-				if (gridInfo[(int)pos.x][(int)pos.y][(int)pos.z + z] != null)
-					return true;
-			}
-		}
-
-		return false;
-	}
-
-	// Use this for initialization
-	void Start()
-	{
+		// Init Grid
 		gridInfo = new ItemEntity[MapSizeX][][];
 
 		for (int x = 0; x < MapSizeX; x++)
@@ -112,69 +61,144 @@ public class GridManager : MonoBehaviour
 				}
 			}
 		}
+	}
 
+	void Start()
+	{
+		// Update grid info with object already on the map
 		foreach (var entity in GameObject.FindObjectsOfType<ItemEntity>())
 		{
-			if (entity.GetComponentInParent<SnapGridTest>() != null)
+			// Ignore item in hand, if there is one
+			if (entity.GetComponentInParent<Hand>() != null)
 				continue;
 
-			Vector3 pos = entity.transform.position;
-			Vector3 dim = entity.Description.Size;
-
-			FromWorldPosAndDimToGridPos(ref pos, ref dim, entity);
-			AddObject(pos, dim, entity);
+			AddObject(entity);
 		}
 	}
 
-	// Update is called once per frame
+
+
+	// -- Update ---------------------------------------
+
 	void Update()
 	{
-		for (int x = 0; x < MapSizeX; x++)
+		// Visual debug
+		if (DisplayGridInfosWithGizmos == true)
 		{
-			for (int y = 0; y < MapSizeY; y++)
+			for (int x = 0; x < MapSizeX; x++)
 			{
-				for (int z = 0; z < MapSizeZ; z++)
+				for (int y = 0; y < MapSizeY; y++)
 				{
-					if (gridInfo[x][y][z] != null)
-						//Debug.Log("pos : " + x + ", " + y + ", " + z);
-						Debug.DrawLine(new Vector3(x, y, z), new Vector3(x + 1f, y, z + 1f));
+					for (int z = 0; z < MapSizeZ; z++)
+					{
+						if (gridInfo[x][y][z] != null)
+						{
+							Debug.DrawLine(new Vector3(x, y, z), new Vector3(x + 1f, y + 1, z + 1f));
+							Debug.DrawLine(new Vector3(x + 1f, y, z), new Vector3(x, y + 1, z + 1f));
+							Debug.DrawLine(new Vector3(x, y, z + 1), new Vector3(x + 1f, y + 1, z));
+							Debug.DrawLine(new Vector3(x + 1f, y, z + 1), new Vector3(x, y + 1, z));
+						}
+					}
 				}
 			}
 		}
 	}
 
-	public void FromWorldPosAndDimToGridPos(ref Vector3 worldPos, ref Vector3 dimension, ItemEntity entity)
+
+
+	// -- Public functions ---------------------------------------------
+
+	public void AddObject(ItemEntity entity)
+	{
+		Vector3 pos;
+		Vector3 dimension;
+
+		FromWorldPosAndDimToGridPos(entity, out pos, out dimension);
+
+		for (int x = 0; x < dimension.x; x++)
+		{
+			for (int y = 0; y < dimension.y; y++)
+			{
+				for (int z = 0; z < dimension.z; z++)
+				{
+					gridInfo[(int)pos.x + x][(int)pos.y + y][(int)pos.z + z] = entity;
+				}
+			}
+		}
+	}
+
+	public bool IsCollideWithAnOtherObject(ItemEntity entity)
+	{
+		Vector3 pos;
+		Vector3 dimension;
+
+		FromWorldPosAndDimToGridPos(entity, out pos, out dimension);
+
+		for (int x = 0; x < dimension.x; x++)
+		{
+			for (int y = 0; y < dimension.y; y++)
+			{
+				for (int z = 0; z < dimension.z; z++)
+				{
+					if (gridInfo[(int)pos.x + x][(int)pos.y + y][(int)pos.z + z] != null)
+						return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public bool IsThereAContainerObject(Vector3 pos)
+	{
+		if (gridInfo[(int)pos.x][(int)pos.y][(int)pos.z] != null)
+		{
+			if (gridInfo[(int)pos.x][(int)pos.y][(int)pos.z].Description.ContainerType == ItemContainerType.Containing)
+				return true;
+		}
+
+		return false;
+	}
+
+
+
+	// -- static functions -----------------
+
+	public static void FromWorldPosAndDimToGridPos(ItemEntity entity, out Vector3 position, out Vector3 dimension)
 	{
 		float x, y, z;
+		Vector3 worldPos = entity.transform.position;
+		Vector3 originalDimensions = entity.Description.Size;
 
+		// Update Dimensions
 		if ((entity.transform.rotation.eulerAngles.y / 90f) % 2 == 1)
 		{
-			Vector2 newDim = new Vector2(dimension.z, dimension.x);
+			Vector2 newDim = new Vector2(originalDimensions.z, originalDimensions.x);
 
 			dimension.x = newDim.x;
+			dimension.y = originalDimensions.y;
 			dimension.z = newDim.y;
 		}
+		else
+			dimension = originalDimensions;
+
+		// Calcul position x
 		x = worldPos.x;
 
 		x -= (dimension.x - 1) / 2;
 		x = Mathf.Floor(x);
 
+		// Calcul positions y
 		y = worldPos.y;
-		//if (dimension.y % 2 == 0)
-		//{
-		//	y -= 0.5f;
-		//}
-		//y -= (dimension.y - 1) / 2;
-		//y = Mathf.Floor(y);
 
+
+		// Calcul position z
 		z = worldPos.z;
-		//if (dimension.z % 2 == 0)
-		//{
-		//	z -= 0.5f;
-		//}
+
 		z -= (dimension.z - 1) / 2;
 		z = Mathf.Floor(z);
 
-		worldPos = new Vector3(x, y, z);
+		// Update position
+		position = new Vector3(x, y, z);
 	}
 }

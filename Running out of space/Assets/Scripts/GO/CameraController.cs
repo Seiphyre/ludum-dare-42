@@ -122,7 +122,7 @@ public class CameraController : MonoBehaviour
         //rot = transform.rotation.eulerAngles;
         while (angle > rotationStep)
         {
-            print(transform.rotation.eulerAngles.y + " || " + rot.y);
+            //print(transform.rotation.eulerAngles.y + " || " + rot.y);
             if (angle < 45 && !_hasShowedWalls)
             {
                 p.Invoke();
