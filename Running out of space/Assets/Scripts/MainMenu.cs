@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+	public AudioClip TruckSound;
+
     public Transform Camera;
     public GameObject OptionCanvas;
 
@@ -22,7 +24,14 @@ public class MainMenu : MonoBehaviour
 
         MainSelectable.Select();
     }
-    public void GoToOption()
+
+	private void Start()
+	{
+		SoundManager.GetInstance().PlayAmbiantMusic();
+		SoundManager.GetInstance().PlaySoundLoop(TruckSound);
+	}
+
+	public void GoToOption()
     {
         OptionCanvas.SetActive(true);
         OptionSelectable.Select();
@@ -37,7 +46,10 @@ public class MainMenu : MonoBehaviour
     public void GoToGame()
     {
         SceneManager.LoadScene("MainGameplay");
-    }
+
+		SoundManager.GetInstance().StopAmbiantMusic();
+		SoundManager.GetInstance().StopSoundLoop(TruckSound);
+	}
 
     void StartLoopShake(float magnitude = 0.05f)
     {

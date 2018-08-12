@@ -592,10 +592,10 @@ RectTransform:
   m_Father: {fileID: 1990801004}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 350, y: 100}
-  m_SizeDelta: {x: 328, y: 552}
+  m_AnchorMin: {x: 0.3012034, y: 0}
+  m_AnchorMax: {x: 0.6971865, y: 0.892}
+  m_AnchoredPosition: {x: 0, y: -88}
+  m_SizeDelta: {x: 0, y: 176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &420315307
 MonoBehaviour:
@@ -1184,10 +1184,10 @@ RectTransform:
   m_Father: {fileID: 1990801004}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 350, y: 254}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0.33125508, y: 0.6063641}
+  m_AnchorMax: {x: 0.6704068, y: 0.65563124}
+  m_AnchoredPosition: {x: 0, y: -11.6}
+  m_SizeDelta: {x: 0, y: 23.21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &820211270
 MonoBehaviour:
@@ -1235,8 +1235,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18.55
-  m_fontSizeBase: 36
+  m_fontSize: 14.05
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
@@ -1940,10 +1940,10 @@ RectTransform:
   m_Father: {fileID: 1990801004}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 350, y: 168.2}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0.33125508, y: 0.33600003}
+  m_AnchorMax: {x: 0.6704068, y: 0.4587329}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1136197535
 MonoBehaviour:
@@ -1991,7 +1991,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18.55
+  m_fontSize: 20
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2519,6 +2519,137 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1285537837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1285537839}
+  - component: {fileID: 1285537838}
+  - component: {fileID: 1285537841}
+  - component: {fileID: 1285537840}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1285537838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1285537837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd54cb6d4b0d114c8e03969c83f971d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AmbientMusic: {fileID: 8300000, guid: 4b192097cb7015e4e878c07a794ef728, type: 3}
+  Volume: 0.3
+--- !u!4 &1285537839
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1285537837}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.47094727, y: -1.2392578, z: 1.9658203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1285537840
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1285537837}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!81 &1285537841
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1285537837}
+  m_Enabled: 1
 --- !u!1 &1375478601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,6 +2753,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1376129854}
   - component: {fileID: 1376129855}
+  - component: {fileID: 1376129856}
   m_Layer: 5
   m_Name: SoundSlider
   m_TagString: Untagged
@@ -2645,10 +2777,10 @@ RectTransform:
   m_Father: {fileID: 1990801004}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: 38.199997}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchorMin: {x: 0.39659867, y: 0.55654377}
+  m_AnchorMax: {x: 0.5965986, y: 0.6063641}
+  m_AnchoredPosition: {x: 1, y: 0.7700043}
+  m_SizeDelta: {x: 2, y: -1.5400009}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1376129855
 MonoBehaviour:
@@ -2695,9 +2827,31 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1285537838}
+        m_MethodName: ChangeVolume
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1376129855}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1376129856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1376129853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5cfaa470ea0b8143ac48c0ccb988fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1451257428 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4106824859902218, guid: 07959b217fab8b242ab34201f16478d1,
@@ -3996,6 +4150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d3e36666be53d44862fa0ad7276d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TruckSound: {fileID: 8300000, guid: 5f8cd0ba82abae640b50b4f7ccb35db8, type: 3}
   Camera: {fileID: 2146899799}
   OptionCanvas: {fileID: 1990801003}
   OptionSelectable: {fileID: 1136197537}
@@ -4040,7 +4195,6 @@ GameObject:
   - component: {fileID: 2146899799}
   - component: {fileID: 2146899798}
   - component: {fileID: 2146899797}
-  - component: {fileID: 2146899796}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4048,13 +4202,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2146899796
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2146899795}
-  m_Enabled: 1
 --- !u!124 &2146899797
 Behaviour:
   m_ObjectHideFlags: 0
