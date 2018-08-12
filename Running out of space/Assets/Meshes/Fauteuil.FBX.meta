@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e9821b6299336e443820b183811572cd
+guid: 5a626d7ac2f7b2547acee2b2627ae775
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -8,8 +8,7 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Box001
-    4300002: Armoire
+    4300000: Fauteuil
     9500000: //RootNode
   externalObjects: {}
   materials:

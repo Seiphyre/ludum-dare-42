@@ -1,15 +1,26 @@
 fileFormatVersion: 2
-guid: e9821b6299336e443820b183811572cd
+guid: 941dbe023c9d981498b1173314cba5f6
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Canape
+    100004: Coussin
+    100006: Coussin001
     400000: //RootNode
+    400002: Canape
+    400004: Coussin
+    400006: Coussin001
     2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Box001
-    4300002: Armoire
+    2300000: Canape
+    2300002: Coussin
+    2300004: Coussin001
+    3300000: Canape
+    3300002: Coussin
+    3300004: Coussin001
+    4300000: Canape
+    4300002: Coussin
+    4300004: Coussin001
     9500000: //RootNode
   externalObjects: {}
   materials:
