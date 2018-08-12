@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemType: 180
   Sprite: {fileID: 0}
   ContainerType: 1
-  HideContent: 1
+  HideContent: 0
   ContainSize: 9
   ContentSize: 0
   Size: {x: 2, y: 2, z: 1}
