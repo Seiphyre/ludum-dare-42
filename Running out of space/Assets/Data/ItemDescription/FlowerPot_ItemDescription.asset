@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: FlowerPot_ItemDescription
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1785007918837760, guid: 56706a854edf6c841a31bc1c2b91e595, type: 2}
-  ItemType: 2
+  ItemType: 60
+  Sprite: {fileID: 0}
   ContainerType: 2
   HideContent: 0
   ContainSize: 0

@@ -9,6 +9,8 @@ public class ItemEntity : MonoBehaviour
 
     public ItemEntity ItemToContent;
 
+
+
     [ContextMenu("Initialize")]
     public void InitializeTest()
     {
@@ -19,6 +21,13 @@ public class ItemEntity : MonoBehaviour
     {
         Description = desc;
         Visual = new ItemVisual(Description, Vector3.zero, transform);
+    }
+
+    [ContextMenu("ShowContent")]
+    public void ShowContentCanvas()
+    {
+        ContainerUI containerUI = LevelManager.Instance.ContainerCanvas.GetComponent<ContainerUI>();
+        containerUI.Initialize(Visual);
     }
 
     public void Update()

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Table_ItemDescription
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1464304028652806, guid: c963b75078f38ea4aab96d07ccf3107f, type: 2}
-  ItemType: 5
+  ItemType: 200
   Sprite: {fileID: 0}
   ContainerType: 1
   HideContent: 0

@@ -77,6 +77,16 @@ public class ItemVisual
         }
     }
 
+    internal List<ItemEntity> GetContent()
+    {
+        return m_content.Items;
+    }
+
+    internal bool RemoveContent(ItemEntity content)
+    {
+        return m_content.RemoveItem(content);
+    }
+
     protected bool HasVisual()
     {
         if (m_visualGameObject != null)
@@ -112,7 +122,7 @@ public class ItemVisual
         internal ItemContent()
         {
             Slots = new List<Transform>();
-            Item = new List<ItemEntity>();
+            Items = new List<ItemEntity>();
             EmptySlots = 0;
         }
 
@@ -129,7 +139,7 @@ public class ItemVisual
 
         internal void AddItem(ItemEntity item, ItemDescription container)
         {
-            Item.Add(item);
+            Items.Add(item);
 
             if (container.HideContent)
             {
@@ -137,15 +147,32 @@ public class ItemVisual
             }
             else
             {
-                item.transform.position = Slots[Item.IndexOf(item)].transform.position;
+                item.transform.position = Slots[Items.IndexOf(item)].transform.position;
             }
 
             EmptySlots -= item.Description.ContentSize;
         }
 
+        internal bool RemoveItem(ItemEntity item)
+        {
+            if (!Items.Contains(item))
+            {
+                Debug.LogError("The given item is not a content of this container");
+                return false;
+            }
+
+            Items.Remove(item);
+
+            item.gameObject.SetActive(true);
+
+            EmptySlots += item.Description.ContentSize;
+
+            return true;
+        }
+
         internal List<Transform> Slots;
 
-        internal List<ItemEntity> Item;
+        internal List<ItemEntity> Items;
 
         protected int EmptySlots;
     }
