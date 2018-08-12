@@ -53,12 +53,12 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    public void SetWallMeshs(List<MeshRenderer> north, List<MeshRenderer> east, List<MeshRenderer> south, List<MeshRenderer> west)
+    public void SetWallMeshs(List<WallStates> north, List<WallStates> east, List<WallStates> south, List<WallStates> west)
     {
-        wall_N.SetMeshList(north);
-        wall_E.SetMeshList(east);
-        wall_S.SetMeshList(south);
-        wall_W.SetMeshList(west);
+        wall_N.SetWallStateList(north);
+        wall_E.SetWallStateList(east);
+        wall_S.SetWallStateList(south);
+        wall_W.SetWallStateList(west);
 
         chdWall(CurrentCameraDirection);
     }
@@ -81,6 +81,11 @@ public class CameraController : MonoBehaviour
         {
             positiveRotation = true;
             TriggerInput();
+        }
+
+        if (Player.GetInstance() != null)
+        {
+            transform.position = Player.GetInstance().transform.position;
         }
     }
     #endregion
@@ -194,17 +199,19 @@ public enum Direction
 [System.Serializable]
 class Wall
 {
-    public List<MeshRenderer> wallsGameObjects = new List<MeshRenderer>();
+    public List<WallStates> wallsStates = new List<WallStates>();
     public void SetVisualShadow(bool visible)
     {
-        for (int i = 0; i < wallsGameObjects.Count; i++)
-            wallsGameObjects[i].shadowCastingMode = visible ? ShadowCastingMode.On : ShadowCastingMode.ShadowsOnly;
+        foreach (var wall in wallsStates)
+        {
+            wall.SetWallState(!visible);
+        }
     }
 
-    public void SetMeshList(List<MeshRenderer> meshList)
+    public void SetWallStateList(List<WallStates> wallsList)
     {
-        wallsGameObjects.Clear();
+        wallsStates.Clear();
 
-        wallsGameObjects = meshList;
+        wallsStates = wallsList;
     }
 }

@@ -2,39 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
+    public Hand Hand;
+    public Animator Animator;
 
-	public Hand Hand;
+    #region -- Singleton ----------------------------
 
-	#region -- Singleton ----------------------------
+    private static Player Instance;
 
-	private static Player Instance;
+    public static Player GetInstance()
+    {
+        if (Instance == null)
+        {
+            Instance = FindObjectOfType<Player>();
 
-	public static Player GetInstance()
-	{
-		if (Instance == null)
-		{
-			Instance = FindObjectOfType<Player>();
+            // if (Instance == null)
+            // {
+            // 	GameObject GridManager = new GameObject();
+            // 	Instance = GridManager.AddComponent<Player>();
+            // }
+        }
 
-			if (Instance == null)
-			{
-				GameObject GridManager = new GameObject();
-				Instance = GridManager.AddComponent<Player>();
-			}
-		}
+        return Instance;
+    }
 
-		return Instance;
-	}
+    #endregion
 
-	#endregion
+    // Use this for initialization
+    void Start()
+    {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }

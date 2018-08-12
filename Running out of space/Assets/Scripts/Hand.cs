@@ -375,6 +375,8 @@ public class Hand : MonoBehaviour
         GridManager.GetInstance().RemoveObject(entity);
         AllCollidersSetActive(entity, false);
         CurrentObject = entity;
+
+		Player.GetInstance().Animator.SetTrigger("Pickup");
     }
 
     public void ReleaseObject()
@@ -389,6 +391,8 @@ public class Hand : MonoBehaviour
             GridManager.GetInstance().AddObject(CurrentObject);
             StartCoroutine(WaitUntilPlayerExitFromTheObject(CurrentObject));
             CurrentObject = null;
+
+			Player.GetInstance().Animator.SetTrigger("LetDown");
         }
     }
 
@@ -402,6 +406,8 @@ public class Hand : MonoBehaviour
         currentObjRenderer.material.color = Color.white;
         CurrentObject.transform.parent = null;
         CurrentObject = null;
+
+		Player.GetInstance().Animator.SetTrigger("LetDown");
 
         return item;
     }

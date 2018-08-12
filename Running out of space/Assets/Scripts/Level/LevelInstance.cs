@@ -14,7 +14,7 @@ public class LevelInstance : MonoBehaviour
 
     public Vector3 MapDimension;
 
-    public List<MeshRenderer> WallNorth, WallEast, WallSouth, WallWest;
+    public List<WallStates> WallNorth, WallEast, WallSouth, WallWest;
 
     void Awake()
     {

@@ -27,21 +27,21 @@ public class ItemEntity : MonoBehaviour
     public void ShowContentCanvas()
     {
         ContainerUI containerUI = LevelManager.Instance.GetContainerCanvas();
-        containerUI.Show(transform.position + Vector3.up * 1.5f);
+        containerUI.Show(transform.position + Vector3.up * 0.8f);
         containerUI.Initialize(Visual);
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            Visual.Rotate(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            Visual.Rotate(false);
-        }
-    }
+    // public void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.RightArrow))
+    //     {
+    //         Visual.Rotate(true);
+    //     }
+    //     else if (Input.GetKeyDown(KeyCode.LeftArrow))
+    //     {
+    //         Visual.Rotate(false);
+    //     }
+    // }
 
     [ContextMenu("TestSetToContent")]
     public void Test()
