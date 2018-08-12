@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4517558164076558}
   - component: {fileID: 33308895800794194}
   - component: {fileID: 23040331097353818}
+  - component: {fileID: 65175429928722386}
   m_Layer: 0
   m_Name: Fauteuil
   m_TagString: Untagged
@@ -111,3 +112,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1748605145855124}
   m_Mesh: {fileID: 4300000, guid: 5a626d7ac2f7b2547acee2b2627ae775, type: 3}
+--- !u!65 &65175429928722386
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1748605145855124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 1.0000002, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.5}

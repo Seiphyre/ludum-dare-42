@@ -114,6 +114,7 @@ public class Hand : MonoBehaviour
 		{
 			CurrentObject.transform.parent = null;
 			GridManager.GetInstance().AddObject(CurrentObject);
+			Debug.Log("Release");
 			StartCoroutine(WaitUntilPlayerExitFromTheObject(CurrentObject));
 			CurrentObject = null;
 		}
@@ -126,9 +127,11 @@ public class Hand : MonoBehaviour
 		ItemEntity otherEntity;
 		while (GridManager.GetInstance().IsCollideWithAnOtherObject(Player.GetInstance().transform.position, out otherEntity) == true)
 		{
+			Debug.Log("dadfa");
 			yield return null;
 		}
 
+		Debug.Log("Reactive collider");
 		AllCollidersSetActive(entity, true);
 	}
 
@@ -222,6 +225,6 @@ public class Hand : MonoBehaviour
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.blue;
-		Gizmos.DrawSphere(transform.position, 0.3f);
+		Gizmos.DrawSphere(transform.position, 0.2f);
 	}
 }

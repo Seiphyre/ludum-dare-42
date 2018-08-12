@@ -145,6 +145,8 @@ public class GridManager : MonoBehaviour
 			{
 				for (int z = 0; z < dimension.z; z++)
 				{
+					//if ((pos.x < 0 || pos.x >= MapSizeX) || (pos.y < 0 || pos.y >= MapSizeY) || (pos.z < 0 || pos.z >= MapSizeZ))
+					//	continue;
 					gridInfo[(int)pos.x + x][(int)pos.y + y][(int)pos.z + z] = entity;
 				}
 			}
@@ -164,6 +166,9 @@ public class GridManager : MonoBehaviour
 			{
 				for (int z = 0; z < dimension.z; z++)
 				{
+					//if ((pos.x < 0 || pos.x >= MapSizeX) || (pos.y < 0 || pos.y >= MapSizeY) || (pos.z < 0 || pos.z >= MapSizeZ))
+					//	continue;
+
 					gridInfo[(int)pos.x + x][(int)pos.y + y][(int)pos.z + z] = null;
 				}
 			}
@@ -195,12 +200,16 @@ public class GridManager : MonoBehaviour
 	public bool IsCollideWithAnOtherObject(Vector3 pos, out ItemEntity entity)
 	{
 		Vector3 dimension = Vector3.one;
-
 		entity = null;
-		pos = new Vector3(Mathf.Floor(pos.x), pos.y, Mathf.Floor(pos.z));
+		pos = new Vector3(Mathf.Floor(pos.x), Mathf.Round(pos.y), Mathf.Floor(pos.z));
 
-		//Debug.Log("Pos : " + pos);
-		if ( (pos.x < 0 || pos.x >= MapSizeX) ||( pos.y < 0 || pos.y >= MapSizeY) || (pos.z < 0 || pos.z >= MapSizeZ) )
+		if ( !(pos.x >= 0 && pos.x < MapSizeX) )
+			return false;
+
+		if (!(pos.y >= 0 && pos.y < MapSizeY))
+			return false;
+
+		if ( !(pos.z >= 0 && pos.z < MapSizeZ) )
 			return false;
 
 		if (gridInfo[(int)pos.x][(int)pos.y][(int)pos.z] != null)
