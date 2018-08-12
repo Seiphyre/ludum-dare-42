@@ -79,6 +79,7 @@ public class LevelInstance : MonoBehaviour
 
         StartCoroutine(FallObject(item.Visual.GetObject().transform, Vector3.zero));
 
+		GridManager.GetInstance().FitObjectInGrid(item);
 		GridManager.GetInstance().AddObject(item);
 
 		m_itemLeft.RemoveAt(0);

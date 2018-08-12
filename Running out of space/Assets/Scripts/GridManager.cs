@@ -151,6 +151,25 @@ public class GridManager : MonoBehaviour
 		}
 	}
 
+	public void RemoveObject(ItemEntity entity)
+	{
+		Vector3 pos;
+		Vector3 dimension;
+
+		FromWorldPosAndDimToGridPos(entity, out pos, out dimension);
+
+		for (int x = 0; x < dimension.x; x++)
+		{
+			for (int y = 0; y < dimension.y; y++)
+			{
+				for (int z = 0; z < dimension.z; z++)
+				{
+					gridInfo[(int)pos.x + x][(int)pos.y + y][(int)pos.z + z] = null;
+				}
+			}
+		}
+	}
+
 	public bool IsCollideWithAnOtherObject(ItemEntity entity)
 	{
 		Vector3 pos;
@@ -172,7 +191,6 @@ public class GridManager : MonoBehaviour
 
 		return false;
 	}
-
 
 	public bool IsCollideWithAnOtherObject(Vector3 pos, out ItemEntity entity)
 	{
@@ -204,7 +222,96 @@ public class GridManager : MonoBehaviour
 		return false;
 	}
 
+	public void FitObjectInGrid(ItemEntity entity)
+	{
+		float x, y, z;
+		Vector3 dimension;
+		Vector3 position = entity.transform.position;
 
+		// Do not move object if there is not
+		if (entity == null)
+			return;
+
+		// Update dimension with rotation
+		dimension = entity.Description.Size;
+
+		if ((entity.transform.rotation.eulerAngles.y / 90f) % 2 == 1)
+		{
+			Vector2 newDim = new Vector2(dimension.z, dimension.x);
+
+			dimension.x = newDim.x;
+			dimension.z = newDim.y;
+		}
+
+		// Boundary check
+		if (Mathf.Floor(position.x) + Mathf.Floor(dimension.x / 2) >= GridManager.GetInstance().MapSizeX)
+			position.x = GridManager.GetInstance().MapSizeX - 0.4f - Mathf.Floor(dimension.x / 2);
+
+		if (Mathf.Floor(position.x) - Mathf.Floor(dimension.x / 2) < 0)
+			position.x = 0.4f + Mathf.Floor(dimension.x / 2);
+
+		if (Mathf.Floor(position.z) + Mathf.Floor(dimension.z / 2) >= GridManager.GetInstance().MapSizeZ)
+			position.z = GridManager.GetInstance().MapSizeZ - 0.4f - Mathf.Floor(dimension.z / 2);
+
+		if (Mathf.Floor(position.z) - Mathf.Floor(dimension.z / 2) < 0)
+			position.z = 0.4f + Mathf.Floor(dimension.z / 2);
+
+		// Calcul position y
+		y = Mathf.Floor(position.y);
+
+		// Calcul position x
+		x = Mathf.Round(position.x);
+		if (dimension.x % 2 == 1)
+		{
+			if (position.x % 0.5f == 0)
+				x = position.x;
+			else
+				x = Mathf.Ceil(position.x) - 0.5f;
+		}
+
+		// Calcul position z
+		z = Mathf.Round(position.z);
+		if (dimension.z % 2 == 1)
+		{
+			if (position.z % 0.5f == 0)
+				z = position.z;
+			else
+				z = Mathf.Ceil(position.z) - 0.5f;
+		}
+
+		//// Calcul position x
+		//x = position.x;
+
+		////x -= (dimension.x - 1) / 2;
+		////x = Mathf.Floor(x);
+
+		//// Calcul positions y
+		//y = position.y;
+
+
+		//// Calcul position z
+		//z = position.z;
+
+		////z -= (dimension.z - 1) / 2;
+		////z = Mathf.Floor(z);
+
+		// Update position
+		Debug.Log("Debut " + entity.transform.position);
+		entity.transform.position = new Vector3(x, entity.transform.position.y, z);
+		Debug.Log("Fin " + entity.transform.position);
+
+		//// Collision detection
+		//if (GridManager.GetInstance().IsCollideWithAnOtherObject(CurrentObject))
+		//{
+		//	currentObjRenderer.material.color = Color.red;
+		//	canBeRelease = false;
+		//}
+		//else
+		//{
+		//	currentObjRenderer.material.color = Color.white;
+		//	canBeRelease = true;
+		//}
+	}
 
 	// -- static functions -----------------
 
