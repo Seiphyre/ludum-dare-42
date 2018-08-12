@@ -18,4 +18,4 @@ MonoBehaviour:
   HideContent: 1
   ContainSize: 4
   ContentSize: 0
-  Size: {x: 1, y: 1, z: 1}
+  Size: {x: 2, y: 2, z: 1}
