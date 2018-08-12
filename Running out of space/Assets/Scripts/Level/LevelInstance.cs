@@ -52,6 +52,8 @@ public class LevelInstance : MonoBehaviour
         {
             SpawnItem();
 
+            MainGameplayUI.Instance.SetItemCount(ItemLeftCount());
+
             yield return new WaitForSeconds(ItemSpawnDelay);
         }
 
