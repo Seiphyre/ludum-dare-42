@@ -108,6 +108,30 @@ public class GridManager : MonoBehaviour
 
 	// -- Public functions ---------------------------------------------
 
+	public void InitGrid (Vector3 gridDimention)
+	{
+		MapSizeX = (int) gridDimention.x;
+		MapSizeY = (int) gridDimention.y;
+		MapSizeZ = (int) gridDimention.z;
+
+		gridInfo = new ItemEntity[MapSizeX][][];
+
+		for (int x = 0; x < MapSizeX; x++)
+		{
+			gridInfo[x] = new ItemEntity[MapSizeY][];
+
+			for (int y = 0; y < MapSizeY; y++)
+			{
+				gridInfo[x][y] = new ItemEntity[MapSizeZ];
+
+				for (int z = 0; z < MapSizeZ; z++)
+				{
+					gridInfo[x][y][z] = null;
+				}
+			}
+		}
+	}
+
 	public void AddObject(ItemEntity entity)
 	{
 		Vector3 pos;
@@ -175,7 +199,7 @@ public class GridManager : MonoBehaviour
 		entity = null;
 		pos = new Vector3(Mathf.Floor(pos.x), pos.y, Mathf.Floor(pos.z));
 
-		Debug.Log("Pos : " + pos);
+		//Debug.Log("Pos : " + pos);
 		if ( (pos.x < 0 || pos.x >= MapSizeX) ||( pos.y < 0 || pos.y >= MapSizeY) || (pos.z < 0 || pos.z >= MapSizeZ) )
 			return false;
 

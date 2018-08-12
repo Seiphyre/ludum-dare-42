@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class LevelInstance : MonoBehaviour
 {
+	public Transform SpawnPlayer;
     public List<Transform> SpawnPoints;
     public List<ItemType> Items;
 
     public float LevelArmatureSpawnDelay = 0.5f;
     public int ItemSpawnDelay = 10;
     public float SpawnHeight = 5f;
+
+	public Vector3 MapDimension;
 
     public List<MeshRenderer> WallNorth, WallEast, WallSouth, WallWest;
 
@@ -76,7 +79,9 @@ public class LevelInstance : MonoBehaviour
 
         StartCoroutine(FallObject(item.Visual.GetObject().transform, Vector3.zero));
 
-        m_itemLeft.RemoveAt(0);
+		GridManager.GetInstance().AddObject(item);
+
+		m_itemLeft.RemoveAt(0);
     }
 
     IEnumerator FallObject(Transform item, Vector3 position)
@@ -93,7 +98,7 @@ public class LevelInstance : MonoBehaviour
 
         item.localPosition = position;
 
-        yield break;
+		yield break;
     }
 
     protected Vector3 GetFreeSpawnPosition()
