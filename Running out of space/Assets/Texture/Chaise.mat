@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Baignoire
+  m_Name: Chaise
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 4
@@ -19,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 8b0fe2fadef95b54b8c80208a433380a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7d2a782b83aa70d44835c0ac23a517eb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -39,11 +39,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f76a62d50f2804e46afe3c05a365d9bc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 406546cccbe779d4f8d3ae1bf36370cd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 2185fe476ee30e2409aa80e6d9cb73a1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7f4d3c6cf05eb794fab04a66a294097e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -51,7 +51,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: bcbc5126ff92d974cacd79e0ccb46e67, type: 3}
+        m_Texture: {fileID: 2800000, guid: 910a9f6a29fba064cbe6a53df9a11ee4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -59,7 +59,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlossMapScale: 0.142
+    - _GlossMapScale: 0.211
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
