@@ -627,7 +627,7 @@ MonoBehaviour:
   - {fileID: 4532288653069560}
   - {fileID: 4733599681273904}
   - {fileID: 4182296688056708}
-  Items: dc000000000000000d0000006e000000
+  Items: 1e0000000d0000000d0000000d000000
   LevelArmatureSpawnDelay: 0.5
   ItemSpawnDelay: 10
   SpawnHeight: 5

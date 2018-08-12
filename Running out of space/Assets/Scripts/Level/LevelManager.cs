@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     [Space(5f)]
     public GameObject ItemEntityPrefab;
     [SerializeField] GameObject CameraPrefab;
-	public GameObject PlayerPrefab;
+    public GameObject PlayerPrefab;
 
     public GameObject ContainerCanvas;
 
@@ -39,6 +39,16 @@ public class LevelManager : MonoBehaviour
         return m_currentLevel.ItemLeftCount();
     }
 
+    public ContainerUI GetContainerCanvas()
+    {
+        if (m_containerUI == null)
+        {
+            m_containerUI = ContainerCanvas.GetComponent<ContainerUI>();
+        }
+
+        return m_containerUI;
+    }
+
     void Awake()
     {
         if (Instance == null)
@@ -61,22 +71,22 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator SpawnNextLevel()
     {
-		m_currentLevel = Instantiate(Levels[m_currentLevelIndex]).GetComponent<LevelInstance>();
+        m_currentLevel = Instantiate(Levels[m_currentLevelIndex]).GetComponent<LevelInstance>();
 
-		// Replace the camera
-		m_camera.transform.position = new Vector3(m_currentLevel.MapDimension.x / 2f, 0, m_currentLevel.MapDimension.x / 2f);
-		// Reset grid with the good dimensions
-		GridManager.GetInstance().InitGrid(m_currentLevel.MapDimension);
+        // Replace the camera
+        m_camera.transform.position = new Vector3(m_currentLevel.MapDimension.x / 2f, 0, m_currentLevel.MapDimension.x / 2f);
+        // Reset grid with the good dimensions
+        GridManager.GetInstance().InitGrid(m_currentLevel.MapDimension);
 
-		yield return m_currentLevel.SpawnLevel();
+        yield return m_currentLevel.SpawnLevel();
 
-		// Instantiate player
-		GameObject player = Instantiate(PlayerPrefab, m_currentLevel.transform);
-		player.transform.position = new Vector3(m_currentLevel.SpawnPlayer.position.x, m_currentLevel.SpawnHeight, m_currentLevel.SpawnPlayer.position.z);
+        // Instantiate player
+        GameObject player = Instantiate(PlayerPrefab, m_currentLevel.transform);
+        player.transform.position = new Vector3(m_currentLevel.SpawnPlayer.position.x, m_currentLevel.SpawnHeight, m_currentLevel.SpawnPlayer.position.z);
 
-		yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1);
 
-		StartCurrentLevel();
+        StartCurrentLevel();
 
         m_currentLevelIndex++;
     }
@@ -90,6 +100,7 @@ public class LevelManager : MonoBehaviour
     }
 
     int m_currentLevelIndex;
+    ContainerUI m_containerUI;
     CameraController m_camera;
     LevelInstance m_currentLevel;
 }

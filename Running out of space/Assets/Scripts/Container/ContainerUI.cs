@@ -8,11 +8,19 @@ public class ContainerUI : MonoBehaviour
     public GameObject LockPanel;
     public Transform Select;
 
+    public Selectable ObjectSelected;
+
     public List<ContentUI> Content;
+
+    public bool Locked
+    {
+        get { return LockPanel.activeSelf; }
+    }
 
     public void Initialize(ItemVisual itemVisual)
     {
         List<ItemEntity> items = itemVisual.GetContent();
+        m_itemVisual = itemVisual;
 
         for (int i = 0; i < Content.Count; i++)
         {
@@ -23,16 +31,22 @@ public class ContainerUI : MonoBehaviour
 
             Content[i].UpdateSprite();
         }
-        //Check if player has item in hand
-        LockPanel.SetActive(!CheckEmptySlot());
 
-        m_itemVisual = itemVisual;
+        if (Player.GetInstance().Hand.CurrentObject != null && !CheckEmptySlot())
+        {
+            LockPanel.SetActive(true);
+        }
+        else
+        {
+            LockPanel.SetActive(false);
+        }
     }
 
     public void Show(Vector3 position)
     {
         transform.position = position;
         gameObject.SetActive(true);
+        ObjectSelected.Select();
     }
 
     public void Hide()
@@ -47,16 +61,24 @@ public class ContainerUI : MonoBehaviour
 
     public void AddOrRemoveContent(int index)
     {
-        if (Content[index].Item == null)
-            AddContent(index);
+        if (Player.GetInstance().Hand.CurrentObject != null)
+        {
+            if (!Locked)
+            {
+                AddContent(index);
+            }
+        }
         else
+        {
             RemoveContent(index);
+        }
     }
 
     internal void AddContent(int index)
     {
-        //GetItemFromPlayer
-        //m_itemVisual.AddItemToContent();
+        index = GetNextAvailableIndex();
+        ItemEntity item = Player.GetInstance().Hand.GetAndRemoveCurrentObject();
+        m_itemVisual.AddItemToContent(item);
         Initialize(m_itemVisual);
     }
 
@@ -65,18 +87,38 @@ public class ContainerUI : MonoBehaviour
         if (m_itemVisual.RemoveContent(Content[index].Item))
         {
             //Function to set item in player hand
+            Player.GetInstance().Hand.TakeObject(Content[index].Item);
             Initialize(m_itemVisual);
         }
     }
 
+    internal int GetNextAvailableIndex()
+    {
+        for (int i = 0; i < Content.Count; i++)
+        {
+            if (!Content[i].HasItem())
+            {
+                return i;
+            }
+        }
+
+        return Content.Count - 1;
+    }
+
     internal bool CheckEmptySlot()
     {
+        int index = 0;
         foreach (ContentUI contentCase in Content)
         {
+            if (index > m_itemVisual.GetEmptySlotsCount())
+            {
+                return false;
+            }
             if (!contentCase.HasItem())
             {
                 return true;
             }
+            index++;
         }
 
         return false;

@@ -26,7 +26,8 @@ public class ItemEntity : MonoBehaviour
     [ContextMenu("ShowContent")]
     public void ShowContentCanvas()
     {
-        ContainerUI containerUI = LevelManager.Instance.ContainerCanvas.GetComponent<ContainerUI>();
+        ContainerUI containerUI = LevelManager.Instance.GetContainerCanvas();
+        containerUI.Show(transform.position + Vector3.up * 1.5f);
         containerUI.Initialize(Visual);
     }
 

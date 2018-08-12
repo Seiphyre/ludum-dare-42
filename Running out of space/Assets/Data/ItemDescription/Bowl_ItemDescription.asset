@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1686232784160538, guid: 329d90f58490e634886303b2857c5f49, type: 2}
   ItemType: 13
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 7d4fc55a015989f419b96340cd69ba6f, type: 3}
   ContainerType: 2
   HideContent: 0
   ContainSize: 0

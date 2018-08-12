@@ -53,17 +53,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			move = transform.InverseTransformDirection(move);
 			CheckGroundStatus();
 			move = Vector3.ProjectOnPlane(move, m_GroundNormal);
-			//m_TurnAmount = Mathf.Atan2(move.x, move.z);
-			if (move.magnitude > 0f)
-			{
-				m_TurnAmount = Mathf.Atan2(move.x, move.z);
-			}
-			else
-			{
-				m_TurnAmount = 0f;
-			}
-			if (m_TurnAmount == Mathf.PI)
-				m_TurnAmount = 0f;
+			m_TurnAmount = Mathf.Atan2(move.x, move.z);
+			//if (move.magnitude > 0f)
+			//{
+			//	m_TurnAmount = Mathf.Atan2(move.x, move.z);
+			//}
+			//else
+			//{
+			//	m_TurnAmount = 0f;
+			//}
+			//if (m_TurnAmount == Mathf.PI)
+			//	m_TurnAmount = 0f;
 
 			m_ForwardAmount = move.z;
 
