@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 114642618195158602}
   - component: {fileID: 114836630568231540}
   - component: {fileID: 114792156188442382}
+  - component: {fileID: 114975479636984528}
   m_Layer: 5
   m_Name: Canvas_Container
   m_TagString: Untagged
@@ -1037,6 +1038,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114975479636984528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773009796340254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65e893745d8af94296e823a0f4774a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222117292475907706
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1235,7 +1247,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1773009796340254}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.813}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

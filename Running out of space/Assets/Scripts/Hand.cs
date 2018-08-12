@@ -5,14 +5,11 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
 
-	public ItemEntity CurrentObject { get; private set; }
-	public ItemEntity SelectedObject { get; private set; }
+	public ItemEntity CurrentObject { get; set; }
 
 	private float objectRotY;
 
-	private Renderer currentObjRenderer;
-	private Renderer selectedObjRenderer;
-	private bool canBeRelease;
+	private Renderer rdr;
 
 
 
@@ -20,9 +17,14 @@ public class Hand : MonoBehaviour
 
 	void Start ()
 	{
+		//tmp
+		CurrentObject = transform.GetChild(0).GetComponent<ItemEntity>();
+		CurrentObject.InitializeTest();
+
 		objectRotY = 0;
-		canBeRelease = true;
-		MoveCurrentObjectOnGrid(transform.position);
+		rdr = CurrentObject.GetComponentInChildren<Renderer>();
+
+		MoveObjectOnGrid(transform.position);
 	}
 
 
@@ -39,115 +41,24 @@ public class Hand : MonoBehaviour
 				objectRotY = 0;
 		}
 
-		ItemEntity obj;
-		// Found a selected object
-		if (GridManager.GetInstance().IsCollideWithAnOtherObject(transform.position, out obj) == true && CurrentObject == null)
-		{
-			if ( SelectedObject == null )
-			{
-				selectedObjRenderer = obj.GetComponentInChildren<Renderer>();
-				selectedObjRenderer.material.color = Color.blue;
-
-				SelectedObject = obj;
-			}
-
-			else if ( (SelectedObject != null && obj != SelectedObject) )
-			{
-				// Reset previous selected obj
-				selectedObjRenderer.material.color = Color.white;
-
-				// Select new obj
-				selectedObjRenderer = obj.GetComponentInChildren<Renderer>();
-				selectedObjRenderer.material.color = Color.blue;
-
-				SelectedObject = obj;
-			}
-		}
-		else if (SelectedObject != null)
-		{
-			// Reset previous selected obj
-			selectedObjRenderer.material.color = Color.white;
-			SelectedObject = null;
-		}
-
-		// Update current position
-		MoveCurrentObjectOnGrid(transform.position);
+		// Update position
+		MoveObjectOnGrid(transform.position);
 
 		// Place an object (Controler:A Keyboard:V)
 		if (Input.GetButtonDown("Action"))
 		{
-			if (CurrentObject != null)
-				ReleaseObject();
-
-			else if (SelectedObject != null)
-				TakeObject(SelectedObject);
-		}
-	}
-
-
-
-	// -- Public functions ---------------------------
-
-	public void TakeObject(ItemEntity entity)
-	{
-		// Do nothing, if there is already an object in the hand
-		if (CurrentObject != null)
-			return;
-
-		if (SelectedObject != null)
-			SelectedObject = null;
-
-		entity.transform.parent = this.transform;
-		currentObjRenderer = entity.GetComponentInChildren<Renderer>();
-		GridManager.GetInstance().RemoveObject(entity);
-		AllCollidersSetActive(entity, false);
-		CurrentObject = entity;
-	}
-
-	public void ReleaseObject()
-	{
-		// Do nothing, if there is no object in the hand
-		if (CurrentObject == null)
-			return;
-
-		if (canBeRelease == true)
-		{
-			CurrentObject.transform.parent = null;
 			GridManager.GetInstance().AddObject(CurrentObject);
-			StartCoroutine(WaitUntilPlayerExitFromTheObject(CurrentObject));
-			CurrentObject = null;
 		}
 	}
 
-	// -- Private functions -------------------------
-
-	private IEnumerator WaitUntilPlayerExitFromTheObject(ItemEntity entity)
-	{
-		ItemEntity otherEntity;
-		while (GridManager.GetInstance().IsCollideWithAnOtherObject(Player.GetInstance().transform.position, out otherEntity) == true)
-		{
-			yield return null;
-		}
-
-		AllCollidersSetActive(entity, true);
-	}
 
 
+	// -- private functions -------------------------
 
-	private void AllCollidersSetActive(ItemEntity entity, bool isActive)
-	{
-		foreach (var collider in entity.GetComponentsInChildren<Collider>())
-			collider.enabled = isActive;
-	}
-
-	private void MoveCurrentObjectOnGrid(Vector3 position)
+	private void MoveObjectOnGrid(Vector3 position)
 	{
 		float x, y, z;
 		Vector3 dimension;
-
-		// Do not move object if there is not
-		if (CurrentObject == null)
-			return;
 
 		// Update rotation
 		CurrentObject.transform.eulerAngles = new Vector3(0, objectRotY, 0);
@@ -205,23 +116,9 @@ public class Hand : MonoBehaviour
 		// Collision detection
 		if (GridManager.GetInstance().IsCollideWithAnOtherObject(CurrentObject))
 		{
-			currentObjRenderer.material.color = Color.red;
-			canBeRelease = false;
+			rdr.material.color = Color.red;
 		}
 		else
-		{
-			currentObjRenderer.material.color = Color.white;
-			canBeRelease = true;
-		}
-	}
-
-
-
-	// -- Editor --------------------------------------
-
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.blue;
-		Gizmos.DrawSphere(transform.position, 0.3f);
+			rdr.material.color = Color.white;
 	}
 }
