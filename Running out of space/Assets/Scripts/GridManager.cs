@@ -151,25 +151,6 @@ public class GridManager : MonoBehaviour
 		}
 	}
 
-	public void RemoveObject(ItemEntity entity)
-	{
-		Vector3 pos;
-		Vector3 dimension;
-
-		FromWorldPosAndDimToGridPos(entity, out pos, out dimension);
-
-		for (int x = 0; x < dimension.x; x++)
-		{
-			for (int y = 0; y < dimension.y; y++)
-			{
-				for (int z = 0; z < dimension.z; z++)
-				{
-					gridInfo[(int)pos.x + x][(int)pos.y + y][(int)pos.z + z] = null;
-				}
-			}
-		}
-	}
-
 	public bool IsCollideWithAnOtherObject(ItemEntity entity)
 	{
 		Vector3 pos;
@@ -191,6 +172,7 @@ public class GridManager : MonoBehaviour
 
 		return false;
 	}
+
 
 	public bool IsCollideWithAnOtherObject(Vector3 pos, out ItemEntity entity)
 	{
