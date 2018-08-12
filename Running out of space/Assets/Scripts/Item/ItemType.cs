@@ -4,11 +4,21 @@ using UnityEngine;
 
 public enum ItemType
 {
-    Bed = 20,
-    Chair = 30,
-    FlowerPot = 60,
-    Fridge = 61,
-    Sofa = 190,
-    Table = 200,
-    Wardrobe = 230,
+    Armchair = 0,
+    Bathtub = 10,
+    Bed = 11,
+    Book = 12,
+    Bowl = 13,
+    Chair = 20,
+    Desk = 30,
+    Dishes = 31,
+    FlowerPot = 50,
+    Fridge = 51,
+    Lamp = 110,
+    Oven = 140,
+    Shelf = 180,
+    Sofa = 181,
+    Table = 190,
+    Television = 191,
+    Wardrobe = 220,
 }

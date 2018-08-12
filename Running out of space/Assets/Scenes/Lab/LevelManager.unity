@@ -224,6 +224,8 @@ MonoBehaviour:
   Factory: {fileID: 11400000, guid: aed36f3308abf86459f18dd7fcec8df0, type: 2}
   ItemEntityPrefab: {fileID: 1477688258281024, guid: 2e0c6a9a19e327a449973591514fab04,
     type: 2}
+  CameraPrefab: {fileID: 0}
+  ContainerCanvas: {fileID: 0}
   Levels:
   - {fileID: 1799447400405066, guid: 443c46cf8e089e94c937d997706221cd, type: 2}
   - {fileID: 1799447400405066, guid: 443c46cf8e089e94c937d997706221cd, type: 2}
@@ -241,6 +243,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2117213752
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4736394316281728, guid: 2e0c6a9a19e327a449973591514fab04, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736394316281728, guid: 2e0c6a9a19e327a449973591514fab04, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736394316281728, guid: 2e0c6a9a19e327a449973591514fab04, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736394316281728, guid: 2e0c6a9a19e327a449973591514fab04, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736394316281728, guid: 2e0c6a9a19e327a449973591514fab04, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736394316281728, guid: 2e0c6a9a19e327a449973591514fab04, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736394316281728, guid: 2e0c6a9a19e327a449973591514fab04, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736394316281728, guid: 2e0c6a9a19e327a449973591514fab04, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477688258281024, guid: 2e0c6a9a19e327a449973591514fab04, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2e0c6a9a19e327a449973591514fab04, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2136503020
 GameObject:
   m_ObjectHideFlags: 0
