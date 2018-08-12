@@ -13,6 +13,8 @@ public class LevelManager : MonoBehaviour
     public GameObject ItemEntityPrefab;
     [SerializeField] GameObject CameraPrefab;
 
+    public GameObject ContainerCanvas;
+
     [Header("Levels")]
     [Space(5f)]
     public List<GameObject> Levels;

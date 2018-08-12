@@ -10,15 +10,34 @@ public class ContainerUI : MonoBehaviour
 
     public List<ContentUI> Content;
 
-    void Initialize(List<ItemEntity> items)
+    public void Initialize(ItemVisual itemVisual)
     {
-        for (int i = 0; i < items.Count; i++)
+        List<ItemEntity> items = itemVisual.GetContent();
+
+        for (int i = 0; i < Content.Count; i++)
         {
-            Content[i].Item = items[i];
+            if (items.Count > i)
+                Content[i].Item = items[i];
+            else
+                Content[i].Item = null;
+
             Content[i].UpdateSprite();
         }
         //Check if player has item in hand
-        LockPanel.SetActive(CheckEmptySlot());
+        LockPanel.SetActive(!CheckEmptySlot());
+
+        m_itemVisual = itemVisual;
+    }
+
+    public void Show(Vector3 position)
+    {
+        transform.position = position;
+        gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
     }
 
     public void SetSelectPosition(Transform contentCase)
@@ -26,7 +45,31 @@ public class ContainerUI : MonoBehaviour
         Select.position = contentCase.position;
     }
 
-    public bool CheckEmptySlot()
+    public void AddOrRemoveContent(int index)
+    {
+        if (Content[index].Item == null)
+            AddContent(index);
+        else
+            RemoveContent(index);
+    }
+
+    internal void AddContent(int index)
+    {
+        //GetItemFromPlayer
+        //m_itemVisual.AddItemToContent();
+        Initialize(m_itemVisual);
+    }
+
+    internal void RemoveContent(int index)
+    {
+        if (m_itemVisual.RemoveContent(Content[index].Item))
+        {
+            //Function to set item in player hand
+            Initialize(m_itemVisual);
+        }
+    }
+
+    internal bool CheckEmptySlot()
     {
         foreach (ContentUI contentCase in Content)
         {
@@ -38,6 +81,8 @@ public class ContainerUI : MonoBehaviour
 
         return false;
     }
+
+    private ItemVisual m_itemVisual;
 }
 
 [System.Serializable]
