@@ -63,10 +63,10 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(SpawnNextLevel());
     }
 
-    private void Start()
-    {
-        //SoundManager.GetInstance().PlayAmbiantMusic();
-    }
+	private void Start()
+	{
+		SoundManager.GetInstance().PlayAmbiantMusic();
+	}
 
     [ContextMenu("SpawnNextLevel")]
     void SpawnLevel()

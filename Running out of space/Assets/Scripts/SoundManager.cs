@@ -8,10 +8,23 @@ public class SoundManager : MonoBehaviour
 
 	public AudioClip AmbientMusic;
 
-	[Range(0, 1)]
-	public float Volume;
+	[Space]
 
-	private AudioSource audioSource;
+	public AudioClip AlarmSound;
+	public AudioClip ReleaseObjectSound;
+	public AudioClip TakeObjectSound;
+	public AudioClip SelectUISound;
+	public AudioClip DoorbellSound;
+	public AudioClip TimerSound;
+
+	[Range(0, 1)]
+	public float VolumeMusic;
+
+	[Range(0, 1)]
+	public float VolumeSounds;
+
+	private AudioSource audioSourceMusic = null;
+	private AudioSource audioSourceSound = null;
 	private Dictionary<AudioClip, Coroutine> loopingSounds;
 
 	#region -- Singleton ----------------------------
@@ -41,11 +54,20 @@ public class SoundManager : MonoBehaviour
 	{
 		DontDestroyOnLoad(this.gameObject);
 
-		audioSource = GetComponent<AudioSource>();
+		foreach (var source in GetComponents<AudioSource>())
+		{
+			if (audioSourceMusic == null)
+				audioSourceMusic = source;
+			else if (audioSourceSound == null)
+				audioSourceSound = source;
+		}
+
 		loopingSounds = new Dictionary<AudioClip, Coroutine>();
 
-		audioSource.clip = AmbientMusic;
-		ChangeVolume(Volume);
+		audioSourceMusic.clip = AmbientMusic;
+		ChangeVolumeMusic(VolumeMusic);
+
+		ChangeVolumeSound(VolumeSounds);
 	}
 
 	// Use this for initialization
@@ -56,29 +78,41 @@ public class SoundManager : MonoBehaviour
 
 	public void PlayAmbiantMusic()
 	{
-		audioSource.Play();
+		audioSourceMusic.Play();
 	}
 
 	public void StopAmbiantMusic()
 	{
-		audioSource.Stop();
+		audioSourceMusic.Stop();
 	}
 
-	public void ChangeVolume(float volume)
+	public void ChangeVolumeMusic(float volume)
 	{
-		audioSource.volume = volume;
-		Volume = volume;
+		audioSourceMusic.volume = volume;
+		VolumeMusic = volume;
 	}
 
-	public void ChangeVolume(Slider volume)
+	public void ChangeVolumeMusic(Slider volume)
 	{
-		audioSource.volume = volume.value;
-		Volume = volume.value;
+		audioSourceMusic.volume = volume.value;
+		VolumeMusic = volume.value;
+	}
+
+	public void ChangeVolumeSound(float volume)
+	{
+		audioSourceSound.volume = volume;
+		VolumeSounds = volume;
+	}
+
+	public void ChangeVolumeSound(Slider volume)
+	{
+		audioSourceSound.volume = volume.value;
+		VolumeSounds = volume.value;
 	}
 
 	public void PlaySound(AudioClip sound)
 	{
-		audioSource.PlayOneShot(sound);
+		audioSourceSound.PlayOneShot(sound, VolumeSounds);
 	}
 
 	public void PlaySoundLoop(AudioClip sound)
@@ -108,7 +142,7 @@ public class SoundManager : MonoBehaviour
 
 	IEnumerator SoundLoop(AudioClip sound)
 	{
-		audioSource.PlayOneShot(sound);
+		audioSourceSound.PlayOneShot(sound, VolumeSounds);
 
 		yield return new WaitForSeconds(sound.length);
 
