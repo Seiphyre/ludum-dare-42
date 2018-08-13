@@ -16,6 +16,6 @@ MonoBehaviour:
   Sprite: {fileID: 21300000, guid: 7d4fc55a015989f419b96340cd69ba6f, type: 3}
   ContainerType: 1
   HideContent: 0
-  ContainSize: 0
-  ContentSize: 2
+  ContainSize: 2
+  ContentSize: 0
   Size: {x: 2, y: 1, z: 1}

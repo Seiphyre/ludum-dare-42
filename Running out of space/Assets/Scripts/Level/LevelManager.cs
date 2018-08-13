@@ -63,14 +63,20 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(SpawnNextLevel());
     }
 
-	private void Start()
-	{
-		//SoundManager.GetInstance().PlayAmbiantMusic();
-	}
+    private void Start()
+    {
+        //SoundManager.GetInstance().PlayAmbiantMusic();
+    }
 
-	[ContextMenu("SpawnNextLevel")]
+    [ContextMenu("SpawnNextLevel")]
     void SpawnLevel()
     {
+        if (m_currentLevel != null)
+        {
+            m_currentLevel.CleanScene();
+            Destroy(m_currentLevel.gameObject);
+            m_currentLevel = null;
+        }
         StartCoroutine(SpawnNextLevel());
     }
 
@@ -92,8 +98,6 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         StartCurrentLevel();
-
-        m_currentLevelIndex++;
     }
 
     void StartCurrentLevel()
@@ -102,6 +106,23 @@ public class LevelManager : MonoBehaviour
         {
             m_currentLevel.StartLevel();
         }
+    }
+
+    public void RetryCurrentLevel()
+    {
+        SpawnLevel();
+    }
+
+    public void StartNextLevel()
+    {
+        m_currentLevelIndex++;
+
+        SpawnLevel();
+    }
+
+    public bool HasNextLevel()
+    {
+        return (m_currentLevelIndex + 1) < Levels.Count;
     }
 
     int m_currentLevelIndex;
