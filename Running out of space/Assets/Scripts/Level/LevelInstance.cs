@@ -29,6 +29,15 @@ public class LevelInstance : MonoBehaviour
         MainGameplayUI.Instance.SetItemCount(ItemLeftCount());
     }
 
+    public void CleanScene()
+    {
+        foreach (var item in m_itemSpawned)
+        {
+            Destroy(item.gameObject);
+        }
+        m_itemSpawned.Clear();
+    }
+
     #region GameLoop
     public IEnumerator SpawnLevel()
     {
@@ -83,7 +92,11 @@ public class LevelInstance : MonoBehaviour
 
         if (m_Lose)
         {
-            Debug.Log("You Lose");
+            MainGameplayUI.Instance.ShowGameOverCanvas();
+        }
+        else
+        {
+            MainGameplayUI.Instance.ShowWinCanvas();
         }
 
         yield break;
@@ -113,6 +126,7 @@ public class LevelInstance : MonoBehaviour
             GridManager.GetInstance().AddObject(item);
 
             m_itemLeft.RemoveAt(0);
+            m_itemSpawned.Add(item);
         }
         else
         {
@@ -156,5 +170,6 @@ public class LevelInstance : MonoBehaviour
     #endregion Items
 
     private bool m_Lose;
+    private List<ItemEntity> m_itemSpawned = new List<ItemEntity>();
     private List<ItemType> m_itemLeft;
 }
