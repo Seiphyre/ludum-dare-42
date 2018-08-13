@@ -33,7 +33,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1982117888193476}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -56,7 +56,11 @@ MonoBehaviour:
     type: 2}
   CameraPrefab: {fileID: 1509654117358736, guid: fa005876328a42a44bb2f0543a5bb5b1,
     type: 2}
+  PlayerPrefab: {fileID: 1356955892787964, guid: fc783fe773788614eb5be49a2db06a1c,
+    type: 2}
+  ContainerCanvas: {fileID: 0}
   Levels:
-  - {fileID: 1799447400405066, guid: 443c46cf8e089e94c937d997706221cd, type: 2}
-  - {fileID: 1799447400405066, guid: 443c46cf8e089e94c937d997706221cd, type: 2}
-  - {fileID: 1799447400405066, guid: 443c46cf8e089e94c937d997706221cd, type: 2}
+  - {fileID: 1165086409181862, guid: b0b2f55a2618ecb4d90fc3d551ba4b18, type: 2}
+  - {fileID: 1068644885896460, guid: 5873236ad7515b145b9658abd55ee67c, type: 2}
+  - {fileID: 1115047772782696, guid: 83dde66dcf70bce4ab71bd92895685da, type: 2}
+  - {fileID: 1165086409181862, guid: b0b2f55a2618ecb4d90fc3d551ba4b18, type: 2}

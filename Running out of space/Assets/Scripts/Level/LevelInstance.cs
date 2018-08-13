@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +28,17 @@ public class LevelInstance : MonoBehaviour
     void Start()
     {
         MainGameplayUI.Instance.SetItemCount(ItemLeftCount());
+    }
+
+    [ContextMenu("RandomizeItems")]
+    public void Randomize()
+    {
+        Array values = Enum.GetValues(typeof(ItemType));
+        System.Random rnd = new System.Random();
+        for (int i = 0; i < Items.Count; i++)
+        {
+            Items[i] = (ItemType)values.GetValue(rnd.Next(values.Length));
+        }
     }
 
     public void CleanScene()
