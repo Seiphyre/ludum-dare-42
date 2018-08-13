@@ -5812,45 +5812,27 @@ MonoBehaviour:
   SpawnHeight: 5
   MapDimension: {x: 10, y: 3, z: 7}
   WallNorth:
-  - {fileID: 0}
   - {fileID: 114873500322494484}
   - {fileID: 114186993731106468}
   - {fileID: 114833501256896980}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 114528385944645384}
-  - {fileID: 0}
   WallEast:
   - {fileID: 114488014019943442}
   - {fileID: 114945023360198788}
   - {fileID: 114602023310701506}
   - {fileID: 114760560183970390}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 114528385944645384}
-  - {fileID: 0}
   WallSouth:
-  - {fileID: 0}
   - {fileID: 114304442749311716}
   - {fileID: 114926008163049810}
   - {fileID: 114342776079539768}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 114528385944645384}
-  - {fileID: 0}
   WallWest:
   - {fileID: 114049190408426206}
   - {fileID: 114748097062114518}
   - {fileID: 114021142426484658}
   - {fileID: 114322020039114426}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 114528385944645384}
-  - {fileID: 0}
 --- !u!114 &114926008163049810
 MonoBehaviour:
   m_ObjectHideFlags: 1
