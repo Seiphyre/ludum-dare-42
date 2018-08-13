@@ -8740,7 +8740,7 @@ MonoBehaviour:
   LevelArmatureSpawnDelay: 0.5
   ItemSpawnDelay: 5
   SpawnHeight: 5
-  MapDimension: {x: 10, y: 3, z: 7}
+  MapDimension: {x: 9, y: 3, z: 7}
   WallNorth:
   - {fileID: 114764410616771620}
   - {fileID: 114722398649985558}
