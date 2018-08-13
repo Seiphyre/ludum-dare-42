@@ -57,6 +57,13 @@ public class LevelInstance : MonoBehaviour
 
     public IEnumerator GameLoop()
     {
+		float alarmSoundDelay = 4f;
+
+		if (alarmSoundDelay > ItemSpawnDelay)
+			alarmSoundDelay = ItemSpawnDelay;
+
+		Vector3 freeSpawnPos;
+
         while (m_itemLeft.Count != 0)
         {
             if (m_Lose == true)
@@ -66,8 +73,13 @@ public class LevelInstance : MonoBehaviour
 
             MainGameplayUI.Instance.SetItemCount(ItemLeftCount());
 
-            yield return new WaitForSeconds(ItemSpawnDelay);
-        }
+            yield return new WaitForSeconds(ItemSpawnDelay - alarmSoundDelay);
+
+			if (!GetFreeSpawnPosition(out freeSpawnPos))
+				SoundManager.GetInstance().PlaySound(SoundManager.GetInstance().AlarmSound);
+
+			yield return new WaitForSeconds(alarmSoundDelay);
+		}
 
         if (m_Lose)
         {
@@ -90,7 +102,9 @@ public class LevelInstance : MonoBehaviour
         Vector3 position = Vector3.zero;
         if (GetFreeSpawnPosition(out position))
         {
-            ItemEntity item = Instantiate(LevelManager.Instance.ItemEntityPrefab).GetComponent<ItemEntity>();
+			SoundManager.GetInstance().PlaySound(SoundManager.GetInstance().DoorbellSound);
+
+			ItemEntity item = Instantiate(LevelManager.Instance.ItemEntityPrefab).GetComponent<ItemEntity>();
             item.Initialize(LevelManager.Instance.Factory.GetDescription(m_itemLeft[0]));
             item.transform.position = position;
             StartCoroutine(FallObject(item.Visual.GetObject().transform, Vector3.zero));

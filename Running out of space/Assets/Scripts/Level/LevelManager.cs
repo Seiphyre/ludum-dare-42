@@ -65,7 +65,7 @@ public class LevelManager : MonoBehaviour
 
 	private void Start()
 	{
-		//SoundManager.GetInstance().PlayAmbiantMusic();
+		SoundManager.GetInstance().PlayAmbiantMusic();
 	}
 
 	[ContextMenu("SpawnNextLevel")]

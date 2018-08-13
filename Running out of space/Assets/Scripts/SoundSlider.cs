@@ -8,7 +8,7 @@ public class SoundSlider : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		GetComponent<Slider>().value = SoundManager.GetInstance().Volume;
+		GetComponent<Slider>().value = SoundManager.GetInstance().VolumeMusic;
 	}
 	
 	// Update is called once per frame
